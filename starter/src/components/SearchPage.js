@@ -87,27 +87,32 @@ const SearchPage = ({myBooks, updateMyBooks, shelfOptions}) => {
 
         var query = queryStringToJson(location.search);
 
-        
+        console.log(query);
 
-        if (!isEmpty(query?.maxresults)){
-            try {
-                var x_max = parseInt(query.maxresults);
-                if (x_max !== 5 && x_max !== 10 && x_max !== 20){
-                    query.maxresults = 20;
-                }
-                else { 
-                    query.maxresults = x_max;
-                }
-                query.maxresults = maxResultsOptions.indexOf(query.maxresults);
-            }
-            catch(e){
-                console.log('maxresults is not a valid value');
-            }
-            document.getElementById('max-results-select').selectedIndex = query.maxresults;
-            updateMaxResults(query.maxresults);
+        if (isEmpty(query?.maxresults)){
+            query.maxresults = maxResults;
         }
+        try {
+            var x_max = parseInt(query.maxresults);
+            if (x_max !== 5 && x_max !== 10 && x_max !== 20){
+                query.maxresults = 20;
+            }
+            else { 
+                query.maxresults = x_max;
+            }
+            query.maxresults = maxResultsOptions.indexOf(query.maxresults);
+        }
+        catch(e){
+            console.log('maxresults is not a valid value');
+        }
+        document.getElementById('max-results-select').selectedIndex = query.maxresults;
         if (!isEmpty(query?.query)){
+            updateMaxResults(query.maxresults);
             updateSearchText(query.query);
+        }
+        else {
+            setSearchText('');
+            setBookResults([]);
         }
 
     }, [location])
