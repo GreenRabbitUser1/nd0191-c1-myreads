@@ -10,6 +10,8 @@ const SearchBar = ({searchText, updateSearchText, isSearching}) => {
         <div className="search-books-input-wrapper">
             <input 
                 type="text" 
+                id="search-input" 
+                name="query" 
                 placeholder="Search by title, author, or ISBN" 
                 value={searchText} 
                 onChange={(event) => handleSearchTextChange(event)} 

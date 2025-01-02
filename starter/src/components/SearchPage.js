@@ -5,8 +5,12 @@ import debounce from "lodash.debounce";
 import * as BooksAPI from '../BooksAPI';
 import isEmpty from "../utils/isEmpty";
 import Book from "./Book";
+import {useNavigate, useLocation} from 'react-router-dom';
 
 const SearchPage = ({myBooks, updateMyBooks, shelfOptions}) => {
+
+    let navigate = useNavigate();
+    const location = useLocation();
 
     const [searchText, setSearchText] = useState('');    
     const [getBooks, setGetBooks] = useState(false);
@@ -52,6 +56,9 @@ const SearchPage = ({myBooks, updateMyBooks, shelfOptions}) => {
                     }
                     console.log('books', books);
                 }
+                if (location.search !== `?query=${encodeURIComponent(searchText)}&maxresults=${maxResults}`){
+                    navigate(`?query=${encodeURIComponent(searchText)}&maxresults=${maxResults}`);
+                }
                 setBookResults(books);
                 setIsSearching(false);
             };
@@ -59,6 +66,51 @@ const SearchPage = ({myBooks, updateMyBooks, shelfOptions}) => {
             getBookResults();
         }
     }, [getBooks]);
+
+    useEffect(() => {
+        if (isSearching){
+            return;
+        }
+
+        //  URL changed, perform search based on query parameters
+        function queryStringToJson(queryString) {
+            const params = new URLSearchParams(queryString);
+            const queryObject = {};
+        
+            // Iterate through each key-value pair
+            params.forEach((value, key) => {
+                queryObject[key] = value;
+            });
+        
+            return queryObject;
+        }
+
+        var query = queryStringToJson(location.search);
+
+        
+
+        if (!isEmpty(query?.maxresults)){
+            try {
+                var x_max = parseInt(query.maxresults);
+                if (x_max !== 5 && x_max !== 10 && x_max !== 20){
+                    query.maxresults = 20;
+                }
+                else { 
+                    query.maxresults = x_max;
+                }
+                query.maxresults = maxResultsOptions.indexOf(query.maxresults);
+            }
+            catch(e){
+                console.log('maxresults is not a valid value');
+            }
+            document.getElementById('max-results-select').selectedIndex = query.maxresults;
+            updateMaxResults(query.maxresults);
+        }
+        if (!isEmpty(query?.query)){
+            updateSearchText(query.query);
+        }
+
+    }, [location])
 
     return (
         <div className="search-books">
