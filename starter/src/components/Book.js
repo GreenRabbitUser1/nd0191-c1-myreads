@@ -19,7 +19,7 @@ const Book = ({book, updateMyBooks, shelfOptions, bookshelfTag}) => {
                         style={{
                         width: 128,
                         height: 193,
-                        backgroundImage: `url("${book.imageLinks.thumbnail}")`
+                        backgroundImage: `url("${book?.imageLinks?.thumbnail || book?.imageLinks?.smallThumbnail}")`
                     }}></div>
                     <div className="book-shelf-changer">
                         <select onChange={(event) => handleUpdateMyBooks(event)} defaultValue={bookshelf}>
