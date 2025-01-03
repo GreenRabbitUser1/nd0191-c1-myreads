@@ -13,7 +13,7 @@ const BookshelfPage = ({myBooks, updateMyBooks, shelfOptions}) => {
                 <h3>Jordan Manningham</h3>
             </div>
             <div className="list-books-content">
-                <div>
+                <div className="bookshelf-wrap">
                     {
                         shelfOptions.slice(0, shelfOptions.length - 1).map((s, index) => {
                             return (
@@ -35,8 +35,10 @@ const BookshelfPage = ({myBooks, updateMyBooks, shelfOptions}) => {
                 </div>
             </div>
             <div className="open-search">
+                <div>
+                    Add Books
+                </div>
                 <Link to="/search">
-                    Add a book
                 </Link>
             </div>
         </div>
@@ -45,7 +47,8 @@ const BookshelfPage = ({myBooks, updateMyBooks, shelfOptions}) => {
 
 BookshelfPage.propTypes = {
     myBooks: propTypes.array.isRequired,
-    updateMyBooks: propTypes.func.isRequired
+    updateMyBooks: propTypes.func.isRequired,
+    shelfOptions: propTypes.array.isRequired
 };
 
 export default BookshelfPage;

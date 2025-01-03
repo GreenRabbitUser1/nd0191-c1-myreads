@@ -2,6 +2,7 @@ import "./App.css";
 import { useState, useEffect, useCallback } from "react";
 import SearchPage from "./components/SearchPage";
 import BookshelfPage from "./components/BookshelfPage";
+import BookPage from "./components/BookPage";
 import {Route, Routes, useNavigate} from "react-router-dom";
 import * as BooksAPI from './BooksAPI';
 import debounce from "lodash.debounce";
@@ -93,6 +94,9 @@ function App() {
             } />
             <Route path="/search" element={
                 <SearchPage myBooks={myBooks} updateMyBooks={updateMyBooks} shelfOptions={shelfOptions} />
+            } />
+            <Route path="/book/:slug" element={
+                <BookPage updateMyBooks={updateMyBooks} shelfOptions={shelfOptions} />
             } />
         </Routes>
     );

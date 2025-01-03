@@ -1,7 +1,9 @@
 import propTypes from "prop-types";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import isEmpty from "../utils/isEmpty";
 
-const Book = ({book, updateMyBooks, shelfOptions, bookshelfTag}) => {
+const Book = ({book, updateMyBooks, shelfOptions, bookshelfTag, hideBookLink}) => {
 
     const [bookshelf, setBookshelf] = useState(bookshelfTag);
 
@@ -21,6 +23,12 @@ const Book = ({book, updateMyBooks, shelfOptions, bookshelfTag}) => {
                         height: 193,
                         backgroundImage: `url("${book?.imageLinks?.thumbnail || book?.imageLinks?.smallThumbnail}")`
                     }}></div>
+                    ({
+                        !hideBookLink &&
+                        <Link to={`/book/${book.id}`}>
+                            <div className="book-link-img"></div>
+                        </Link>
+                    })
                     <div className="book-shelf-changer">
                         <select onChange={(event) => handleUpdateMyBooks(event)} defaultValue={bookshelf}>
                             <option value="none" disabled>Move to...</option>
@@ -40,8 +48,11 @@ const Book = ({book, updateMyBooks, shelfOptions, bookshelfTag}) => {
                         </select>
                     </div>
                 </div>
-                <div className="book-title">{book.title}</div>
-                <div className="book-authors">{book.author}</div>
+                <div className="book-main-details">
+                    <div className="book-title">{book.title}</div>
+                    <div className="book-authors">{!isEmpty(book.authors) ? book.authors.join(', ') : ''}</div>
+                    <div className="book-pages">{`${!isEmpty(book.pageCount) ? book.pageCount : '?'} pages`}</div>
+                </div>
             </div>
         </li>
     )
@@ -49,7 +60,10 @@ const Book = ({book, updateMyBooks, shelfOptions, bookshelfTag}) => {
 
 Book.propTypes = {
     book: propTypes.object.isRequired,
-    updateMyBooks: propTypes.func.isRequired
+    updateMyBooks: propTypes.func.isRequired,
+    shelfOptions: propTypes.array.isRequired,
+    bookshelfTag: propTypes.string.isRequired,
+    hideBookLink: propTypes.bool
 };
 
 export default Book;

@@ -6,6 +6,7 @@ import * as BooksAPI from '../BooksAPI';
 import isEmpty from "../utils/isEmpty";
 import Book from "./Book";
 import {useNavigate, useLocation} from 'react-router-dom';
+import propTypes from "prop-types";
 
 const SearchPage = ({myBooks, updateMyBooks, shelfOptions}) => {
 
@@ -184,6 +185,12 @@ const SearchPage = ({myBooks, updateMyBooks, shelfOptions}) => {
             </div>
         </div>
     );
+};
+
+SearchPage.propTypes = {
+    myBooks: propTypes.array.isRequired, 
+    updateMyBooks: propTypes.func.isRequired, 
+    shelfOptions: propTypes.array.isRequired
 };
 
 export default SearchPage;

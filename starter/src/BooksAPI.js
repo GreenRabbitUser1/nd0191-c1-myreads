@@ -9,37 +9,6 @@ const headers = {
     Authorization: token,
 };
 
-// const books = [
-//     {
-//         'title': 'To Kill a Mockingbird',
-//         'author': 'Harper Lee'
-//     },
-//     {
-//         'title': 'Ender\'s Game',
-//         'author': 'Orson Scott Card'
-//     },
-//     {
-//         'title': '1776',
-//         'author': 'David McCullough'
-//     },
-//     {
-//         'title': 'Harry Potter and the Sorcerer\'s Stone',
-//         'author': 'J.K. Rowling'
-//     },
-//     {
-//         'title': 'The Hobbit',
-//         'author': 'J.R.R. Tolkien'
-//     },
-//     {
-//         'title': 'Oh, the Places You\'ll Go!',
-//         'author': 'Dr. Seuss'
-//     },
-//     {
-//         'title': 'The Adventures of Tom Sawyer',
-//         'author': 'Mark Twain'
-//     }
-// ];
-
 export const get = (bookId) =>
     fetch(`${api}/books/${bookId}`, {
         headers

@@ -5,7 +5,11 @@ const Bookshelf = ({bookshelfName, bookshelfTag, myBooks, updateMyBooks, shelfOp
 
     return (
         <div className="bookshelf">
-            <h2 className="bookshelf-title">{bookshelfName}</h2>
+            <h2 className="bookshelf-title-wrap">
+                <span className="bookshelf-title">
+                    {bookshelfName}
+                </span>
+            </h2>
             <div className="bookshelf-books">
                 <ol className="books-grid">
                     {
@@ -31,8 +35,10 @@ const Bookshelf = ({bookshelfName, bookshelfTag, myBooks, updateMyBooks, shelfOp
 
 Bookshelf.propTypes = {
     bookshelfName: propTypes.string.isRequired,
+    bookshelfTag: propTypes.string.isRequired,
     myBooks: propTypes.array.isRequired,
-    updateMyBooks: propTypes.func.isRequired
+    updateMyBooks: propTypes.func.isRequired,
+    shelfOptions: propTypes.array.isRequired
 }
 
 export default Bookshelf;
