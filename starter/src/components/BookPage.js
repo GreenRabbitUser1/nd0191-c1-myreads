@@ -140,9 +140,14 @@ const BookPage = ({updateMyBooks, shelfOptions}) =>{
                     <div id="book-page-right-panel">
                         <div id="book-details">
                             {
-                                details.map((d) => {
+                                details.map((d, index) => {
                                     return (
-                                        <BookDetail label={d.label} value={book[d.tag]} fieldType={d.fieldType} />
+                                        <BookDetail 
+                                            key={index}
+                                            label={d.label} 
+                                            value={book[d.tag]} 
+                                            fieldType={d.fieldType} 
+                                        />
                                     )
                                 })
                             }
