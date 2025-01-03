@@ -176,7 +176,7 @@ const SearchPage = ({myBooks, updateMyBooks, shelfOptions}) => {
                                     updateMyBooks={updateMyBooks} 
                                     key={index} 
                                     shelfOptions={shelfOptions} 
-                                    bookshelfTag={isInMyBooks ? matchingBook.shelf : book.shelf}
+                                    bookshelfTag={isInMyBooks ? matchingBook.shelf : (!isEmpty(book?.shelf) ? book.shelf : 'none')}
                                 />
                             );
                         })

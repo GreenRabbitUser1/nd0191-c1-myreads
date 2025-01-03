@@ -1,5 +1,5 @@
 import propTypes from "prop-types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import isEmpty from "../utils/isEmpty";
 
@@ -11,6 +11,13 @@ const Book = ({book, updateMyBooks, shelfOptions, bookshelfTag, hideBookLink}) =
         console.log('handleUpdateMyBooks event.target.selectedIndex', event);
         updateMyBooks(book, event.target.selectedIndex)
     }
+
+    useEffect(() => {
+        const updateBookshelf = () => {
+            setBookshelf(bookshelfTag)
+        };
+        updateBookshelf();
+    }, [bookshelfTag])
 
     return (
         <li>
@@ -31,7 +38,7 @@ const Book = ({book, updateMyBooks, shelfOptions, bookshelfTag, hideBookLink}) =
                     })
                     <div className="book-shelf-changer">
                         <select onChange={(event) => handleUpdateMyBooks(event)} defaultValue={bookshelf}>
-                            <option value="none" disabled>Move to...</option>
+                            <option value="move-to" disabled>Move to...</option>
                             {
                                 shelfOptions.map((o, index) => {
                                     return (
