@@ -8,7 +8,7 @@ const Book = ({book, updateMyBooks, shelfOptions, bookshelfTag, hideBookLink}) =
     const [bookshelf, setBookshelf] = useState(bookshelfTag);
 
     const handleUpdateMyBooks = (event) => {
-        console.log('handleUpdateMyBooks event.target.selectedIndex', event);
+        // console.log('handleUpdateMyBooks event.target.selectedIndex', event);
         updateMyBooks(book, event.target.selectedIndex)
     }
 

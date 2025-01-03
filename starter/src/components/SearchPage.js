@@ -23,7 +23,7 @@ const SearchPage = ({myBooks, updateMyBooks, shelfOptions}) => {
 
     const updateSearchText = async (value) => {
         setIsSearching(true);
-        console.log('Search Text: ', value);
+        // console.log('Search Text: ', value);
         setSearchText(value);
         debounceFetch();
     }
@@ -31,7 +31,7 @@ const SearchPage = ({myBooks, updateMyBooks, shelfOptions}) => {
     const updateMaxResults = async (value) => {
         setIsSearching(true);
         let newMaxResults = maxResultsOptions[value];
-        console.log('Max Results: ', newMaxResults);
+        // console.log('Max Results: ', newMaxResults);
         setMaxResults(newMaxResults);
         debounceFetch();
     }
@@ -55,7 +55,7 @@ const SearchPage = ({myBooks, updateMyBooks, shelfOptions}) => {
                     else {
                         books = [];
                     }
-                    console.log('books', books);
+                    // console.log('books', books);
                 }
                 if (location.search !== `?query=${encodeURIComponent(searchText)}&maxresults=${maxResults}`){
                     navigate(`?query=${encodeURIComponent(searchText)}&maxresults=${maxResults}`);
@@ -88,7 +88,7 @@ const SearchPage = ({myBooks, updateMyBooks, shelfOptions}) => {
 
         var query = queryStringToJson(location.search);
 
-        console.log(query);
+        // console.log(query);
 
         if (isEmpty(query?.maxresults)){
             query.maxresults = maxResults;
@@ -104,7 +104,7 @@ const SearchPage = ({myBooks, updateMyBooks, shelfOptions}) => {
             query.maxresults = maxResultsOptions.indexOf(query.maxresults);
         }
         catch(e){
-            console.log('maxresults is not a valid value');
+            // console.log('maxresults is not a valid value');
         }
         document.getElementById('max-results-select').selectedIndex = query.maxresults;
         if (!isEmpty(query?.query)){

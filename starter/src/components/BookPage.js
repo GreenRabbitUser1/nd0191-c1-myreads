@@ -62,10 +62,10 @@ const BookPage = ({updateMyBooks, shelfOptions}) =>{
     useEffect(() => {
         const fetchBook = async () => {
             //  Get the bookId from the URL
-            console.log('location', location);
+            // console.log('location', location);
             let url = location.pathname;
             bookId = (url.substring(url.lastIndexOf('/') + 1));
-            console.log('bookId', bookId);
+            // console.log('bookId', bookId);
 
             if (isEmpty(bookId)){
                 setInvalidId(true);
@@ -86,7 +86,7 @@ const BookPage = ({updateMyBooks, shelfOptions}) =>{
             }
 
             //  res has some value returned after searching for this bookId
-            console.log('res', res);
+            // console.log('res', res);
             var ms = shelfOptions.filter((b) => { 
                 if (res?.shelf === b.tag) {
                     return b;
@@ -151,7 +151,7 @@ const BookPage = ({updateMyBooks, shelfOptions}) =>{
                 </div>
 
                 :
-                
+
                 <div>
                     {
                         isEmpty(book) && 

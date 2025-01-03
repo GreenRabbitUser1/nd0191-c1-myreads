@@ -36,8 +36,8 @@ export const update = (book, shelf) =>
     }).then((res) => res.json());
 
 export const search = (query, maxResults) => {
-    console.log('Query', query);
-    console.log('Max Results', maxResults);
+    // console.log('Query', query);
+    // console.log('Max Results', maxResults);
 
     return fetch(`${api}/search`, {
         method: "POST",

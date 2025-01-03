@@ -35,8 +35,8 @@ function App() {
     ];
 
     const updateMyBooks = (book, shelfIndex) => {
-        console.log('updateMyBooks -- books', book);
-        console.log('updateMyBooks -- shelfIndex', shelfIndex);
+        // console.log('updateMyBooks -- books', book);
+        // console.log('updateMyBooks -- shelfIndex', shelfIndex);
 
         //  Add logic that will take input
         let newBooksList = [...myBooks];
@@ -56,7 +56,7 @@ function App() {
         setMyBooks(newBooksList);
         //  Update the book using BooksAPI so that the change persists with page refresh
         BooksAPI.update(book, shelfTag);
-        console.log('newBooksList', myBooks);
+        // console.log('newBooksList', myBooks);
         debounceUpdate();
     }
 
@@ -64,7 +64,7 @@ function App() {
         if (submitUpdate){
             const updateBook = async () => {
                 let book = await BooksAPI.update(bookToUpdate.id, bookToUpdate.shelf);
-                console.log('updateBook book', book);
+                // console.log('updateBook book', book);
             };
 
             updateBook();
@@ -78,7 +78,7 @@ function App() {
     useEffect(() => {
         const getAllBooks = async () => {
             const books = await BooksAPI.getAll();
-            console.log('getAll:', books);
+            // console.log('getAll:', books);
             setMyBooks(books);
         };
 
