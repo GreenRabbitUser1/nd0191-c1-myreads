@@ -6,6 +6,7 @@ import BookPage from "./components/BookPage";
 import {Route, Routes, useNavigate} from "react-router-dom";
 import * as BooksAPI from './BooksAPI';
 import debounce from "lodash.debounce";
+import NotFound from "./components/NotFound";
 
 function App() {
 
@@ -98,6 +99,7 @@ function App() {
             <Route path="/book/:slug" element={
                 <BookPage updateMyBooks={updateMyBooks} shelfOptions={shelfOptions} />
             } />
+            <Route path="*" element={<NotFound />} /> {/* Catch-all route for 404 */}
         </Routes>
     );
 }

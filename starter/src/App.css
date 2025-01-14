@@ -395,3 +395,11 @@ body,
 #book-page > .close-search, #book-page > .go-home {
     position: fixed;
 }
+
+.not-found-wrap {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
